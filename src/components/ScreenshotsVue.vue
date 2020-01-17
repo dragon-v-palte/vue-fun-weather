@@ -93,6 +93,12 @@ export default {
                         margin: 0 auto;
                     }
                 }
+                @media (max-width: 576px) {
+                    display: none;
+                }
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
             }
             &__phone {
                 top: 0;
@@ -118,6 +124,13 @@ export default {
             &__description {
                 width: 50%;
                 margin-top: 150px;
+                @media (max-width: 768px) {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin: 20px 0 50px;
+                }
             }
             &__icons {
                 display: flex;

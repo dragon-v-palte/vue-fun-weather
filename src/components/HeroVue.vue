@@ -47,15 +47,25 @@ export default {
             flex-direction: column;
             padding-top: 80px;
             height: 100%;
+            @media (max-width: 768px) {
+                padding: 0 0 50px;
+                align-items: center;
+            }
             h2 {
                 font-size: 60px;
                 font-weight: bold;
                 margin-bottom: 25px;
+                @media (max-width: 768px) {
+                    text-align: center;
+                }
             }
             p {
                 font-size: 18px;
                 max-width: 390px;
                 margin-bottom: 55px;
+                @media (max-width: 768px) {
+                    text-align: center;
+                }
             }
         }
         &__button {
@@ -85,6 +95,9 @@ export default {
             position: relative;
             &-image {
                 height: 580px;   
+            }
+            @media (max-width: 576px) {
+                display: none;
             }
         }
         &__bubble {
