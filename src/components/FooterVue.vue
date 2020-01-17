@@ -99,10 +99,14 @@ export default {
 .menu {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
   padding: 0;
   font-size: 16px;
+  @media (max-width: 576px) {
+      justify-content: center;
+  }
   &-item {
     list-style: none;
     margin: 0 40px;

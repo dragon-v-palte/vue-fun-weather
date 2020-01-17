@@ -2,18 +2,9 @@
   div.header
     div.container
       div.header__content
-        nav.navbar.navbar-expand-lg
-          div.header__logo.navbar-brand
+          div.header__logo
             span Fun Weather.
-          button.navbar-toggler(
-            type="button"
-            data-toggle="collapse"
-            data-target="#menu-collapse"
-            aria-controls="menu-collapse"
-            aria-expanded="true")
-            i.fa.fa-bars
-        div.collapse.navbar-collapse#menu-collapse
-          ul.header__menu.menu.navbar.nav
+          ul.header__menu.menu
             li.menu-item
               a(href="#home") Home
             li.menu-item
@@ -53,11 +44,12 @@
 
 <script>
 import Jquery from 'jquery'
+//import Popper from 'popper'
 /* import Vue from 'vue'
 Vue.use(Jquery) */
 export default {
   components: {
-    Jquery
+    Jquery//, Popper
   }
 };
 </script>
@@ -74,6 +66,11 @@ export default {
     justify-content: space-between;
     padding: 43px 0 50px;
     height: 60px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 0;
+    }
   }
   &__logo {
     text-transform: uppercase;
@@ -94,6 +91,9 @@ export default {
       &:hover {
         color: #ccc;
       }
+      @media (max-width: 768px) {
+        margin: 20px;
+      } 
     }
   }
 }
@@ -115,6 +115,9 @@ export default {
     cursor: pointer;
     &:hover {
       color: #ccc;
+    }
+    @media (max-width: 768px) {
+      margin: 10px 0;
     }
   }
 }
