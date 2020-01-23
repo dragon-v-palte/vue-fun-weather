@@ -2,32 +2,51 @@
     div.footer
         div.container
             div.footer__top
-                div.footer__logo
+                div.footer__logo(v-scroll-to="'#home'")
                     span.footer__logo--red Fun 
                     span.footer__logo--blue Weather.
                 ul.footer__menu.menu
                     li.menu-item
-                        a(href="#home") Home
+                        a(href="#home" v-scroll-to="'#home'") Home
                     li.menu-item
-                        a(href="#features") Features
+                        a(href="#features" v-scroll-to="'#features'") Features
                     li.menu-item
-                        a(href="#reviews") Reviews
+                        a(href="#reviews" v-scroll-to="'#reviews'") Reviews
                     li.menu-item
-                        a(href="#download") Download
+                        a(href="#download" v-scroll-to="'#download'") Download
                 div.footer__social
-                    a(href="#") 
+                    a(href="#" target="_blank") 
                         i.fa.fa-facebook            
-                    a(href="#")
+                    a(href="#" target="_blank")
                         i.fa.fa-instagram
-                    a(href="#")
+                    a(href="#" target="_blank")
                         i.fa.fa-twitter
             div.footer__bottom
-                p.footer__copyright © 2016 All rights reserved. Weather App Theme by Gravpix
+                p.footer__copyright © 2016 All rights reserved. Weather App Theme by Gravpix                
+        transition(name="button-up")
+            a(href="#home" v-scroll-to="'#home'").button-up(v-if="offset")
+                i.fa.fa-angle-up
 </template>
 
 <script>
 export default {
-    
+    data: function() {
+        return {
+            offset: false
+        }
+    },
+  created() {
+    window.addEventListener('scroll', this.handleScroll)
+    this.handleScroll();
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+        this.offset = (window.scrollY > 1000)
+    }
+  }
 }
 </script>
 
@@ -36,13 +55,12 @@ export default {
   background: #353854;
   color: #ffffff;
   font-weight: bold;
-  z-index: 3;
   &__top {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 100px 0;
+    padding: 104px 0;
     height: 60px;
     @media (max-width: 991px) {
         flex-direction: column;
@@ -62,6 +80,7 @@ export default {
     }
     &:hover {
       color: #ccc;
+      opacity: .7;
     }
     @media (max-width: 991px) {
         margin-bottom: 50px;
@@ -85,7 +104,7 @@ export default {
   }
   &__bottom {
       border-top: 1px solid #565b87;
-      padding: 55px 0 85px;
+      padding: 43px 0 85px;
   }
   &__copyright {
       color: #565b87;
@@ -99,21 +118,51 @@ export default {
 .menu {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
   padding: 0;
   font-size: 16px;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
   }
   &-item {
     list-style: none;
     margin: 0 40px;
     cursor: pointer;
+    @media (max-width: 768px)
+    {
+        margin: 10px 0;
+    }
     &:hover {
       color: #ccc;
     }
   }
+}
+.button-up {
+  position: fixed;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  bottom: 0;
+  right: 10%;
+  width: 50px;
+  height: 35px;
+  background: #454545;
+  font-size: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #ccc;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.button-up-enter-active, .button-up-leave-active {
+    transition: .5s;
+}
+.button-up-enter, .button-up-leave-to {
+    opacity: 0
 }
 </style>
