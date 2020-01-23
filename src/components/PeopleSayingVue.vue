@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
     .people-saying{
-        padding-bottom: 80px;
+        padding-bottom: 83px;
         &__name {
             text-align: center;
             font-size: 36px;

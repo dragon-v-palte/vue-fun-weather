@@ -1,55 +1,62 @@
 <template lang="pug">
-  div.header
+  div.header#home
     div.container
-      div.header__content
+      div.header__content          
           div.header__logo
             span Fun Weather.
-          ul.header__menu.menu
-            li.menu-item
-              a(href="#home") Home
-            li.menu-item
-              a(href="#features") Features
-            li.menu-item
-              a(href="#reviews") Reviews
-            li.menu-item
-              a(href="#download") Download
-          div.header__social
-            a(href="#") 
-              i.fa.fa-facebook            
-            a(href="#")
-              i.fa.fa-instagram
-            a(href="#")
-              i.fa.fa-twitter
-  //<div class="header">
-    <div class="container">
-      <div class="header__content">
-        <div class="header__logo">
-          <span>Fun Weather.</span>
-        </div>
-        <ul class="header__menu menu">
-          <a href="#"><li class="menu-item">Home</li></a>
-          <a href="#"><li class="menu-item">Features</li></a>
-          <a href="#"><li class="menu-item">Reviews</li></a>
-          <a href="#"><li class="menu-item">Download</li></a>
-        </ul>
-        <div class="header__social">
-          <i class="fa fa-facebook"></i>
-          <i class="fa fa-instagram"></i>
-          <i class="fa fa-twitter"></i>
-        </div>
-      </div>
-    </div>
+          button.header__btn-collapse(v-on:click="HeaderMenuVisibleByButton = !HeaderMenuVisibleByButton")
+            i.fa.fa-bars
+          transition(name="menu-collapse")
+            div.header__collapse(v-show="HeaderMenuVisible")
+              ul.header__menu.menu
+                li.menu-item
+                  a(href="#home" v-scroll-to="'#home'") Home
+                li.menu-item
+                  a(href="#features" v-scroll-to="'#features'") Features
+                li.menu-item
+                  a(href="#reviews" v-scroll-to="'#reviews'") Reviews
+                li.menu-item
+                  a(href="#download" v-scroll-to="'#download'") Download
+              div.header__social
+                a(href="#" target="_blank") 
+                  i.fa.fa-facebook            
+                a(href="#" target="_blank")
+                  i.fa.fa-instagram
+                a(href="#" target="_blank")
+                  i.fa.fa-twitter
   </div>
 </template>
 
 <script>
-import Jquery from 'jquery'
-//import Popper from 'popper'
-/* import Vue from 'vue'
-Vue.use(Jquery) */
 export default {
-  components: {
-    Jquery//, Popper
+  data: function() {
+    return {
+      window: {
+        width: 0
+      },
+      HeaderMenuVisibleByButton: false,
+      HeaderMenuVisibleByWindow: true
+    }
+  },
+  computed: {
+      HeaderMenuVisible: function() {
+        if (this.HeaderMenuVisibleByWindow)
+          return this.HeaderMenuVisibleByWindow
+        else
+          return this.HeaderMenuVisibleByButton
+      }
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+  methods: {
+    handleResize() {
+      this.HeaderMenuVisibleByWindow = (window.innerWidth > 768)
+    }
   }
 };
 </script>
@@ -67,7 +74,8 @@ export default {
     padding: 43px 0 50px;
     height: 60px;
     @media (max-width: 768px) {
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       height: auto;
       padding-bottom: 0;
     }
@@ -76,14 +84,41 @@ export default {
     text-transform: uppercase;
     font-size: 24px;
     cursor: pointer;
+    width: 80%;
     &:hover {
       color: #ccc;
+    }
+  }
+  &__collapse {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    @media(min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+  &__btn-collapse {
+    display: block;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 5px 10px;
+    outline: none;
+    &:hover {
+      color: #ccc;
+      border-color: #ccc;
+    }
+    @media (min-width: 768px) {
+      display: none;
     }
   }
   &__social {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     i {
       font-size: 28px;
       margin-left: 35px;
@@ -94,6 +129,14 @@ export default {
       @media (max-width: 768px) {
         margin: 20px;
       } 
+      @media (max-width: 992px) {
+        margin-left: 25px;
+      } 
+    }
+    &--collapse {
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
   }
 }
@@ -101,7 +144,7 @@ export default {
 .menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -119,7 +162,28 @@ export default {
     @media (max-width: 768px) {
       margin: 10px 0;
     }
+    @media (max-width: 992px) {
+      margin: 10px 15px;
+    }
   }
 }
+  .header__menu {
+    @media (max-width: 768px){
+      &--collapse {
+        display: none;
+      }
+    }
+  }
+
+.menu-collapse-enter-active, .menu-collapse-leave-active {
+  transition: .5s;
+  transform-origin: 0 0;
+}
+.menu-collapse-enter, .menu-collapse-leave-to  {
+  opacity: 0;
+  transform: scaleY(0);
+  margin-bottom: -244px;
+}
+
 
 </style>

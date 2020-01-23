@@ -51,20 +51,26 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        @media (min-width: 576px) and (max-width: 991px) {
+        @media (max-width: 991px) {
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            margin: 50px 0;
         }
         &__image {
             width: 75px;
             margin-right: 20px;
             margin-bottom: 0;
-            @media (min-width: 576px) and (max-width: 991px) {
+            @media (max-width: 991px) {
                 margin-right: 0;
                 margin-bottom: 20px;
             }
         }
         &__text {
+            @media (max-width: 576px) {
+                text-align: center;
+                width: 80%;
+            }
             h4 {
                 font-size: 24px;
                 font-weight: bold;
