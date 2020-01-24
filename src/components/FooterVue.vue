@@ -24,7 +24,7 @@
             div.footer__bottom
                 p.footer__copyright © 2016 All rights reserved. Weather App Theme by Gravpix                
         transition(name="button-up")
-            a(href="#home" v-scroll-to="'#home'").button-up(v-if="offset")
+            a.button-up(href="#home" v-scroll-to="'#home'" v-if="offset")
                 i.fa.fa-angle-up
 </template>
 
