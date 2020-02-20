@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-      <Home/>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Home from './pages/Home'
+import WeatherApp from './pages/WeatherApp'
 import Vue from 'vue'
 import VueScrollTo from 'vue-scrollto'
 Vue.use(VueScrollTo, {
      container: "body",
-     duration: 500,
-     easing: "ease",
+     duration: 1500,
+     easing: "ease-in-out",
      offset: 0,
      force: true,
      cancelable: true,
@@ -25,7 +26,8 @@ Vue.use(VueScrollTo, {
 export default {
   name: 'app',
   components: {
-    Home
+    Home,
+    WeatherApp
   }
 }
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -9,11 +9,12 @@
                             p Simple, nice and used-friendly application of the weather. Only useful information
                             div.hero__buttons
                                 button.hero__button.hero__button--red(v-scroll-to="'#download'") Download
-                                button.hero__button.hero__button--blue(v-scroll-to="'#features'") Features
+                                button.hero__button.hero__button--blue
+                                    router-link(to="/weather") Try It
                     div.col-12.col-md-6
                         div.hero__phone
                             img.hero__phone-image(src="../assets/img/hero-phone.png")                            
-                        kinesis-container.kinesis__parent
+                        kinesis-container.kinesis__parent(:duration="2500")
                             kinesis-element.kinesis__child(:strength="-30")
                                 span.hero__bubble.hero__bubble--white 9&deg;
                             kinesis-element.kinesis__child(:strength="10")

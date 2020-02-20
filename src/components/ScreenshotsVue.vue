@@ -9,10 +9,10 @@
                     div.screenshots-item__images
                         img.screenshots-item__img-text(src="../assets/img/screenshots-weather-1.png" v-parallax="0.15")
                         img.screenshots-item__img-phone(src="../assets/img/screenshots-1.png")
-                        kinesis-container.kinesis-parent
+                        kinesis-container.kinesis-parent(:duration="2500")
                             kinesis-element.kinesis-child(:strength="20")                                                
                                 span.screenshots-item__bubble.screenshots-item__bubble--blue 15&deg;
-                            kinesis-element.kinesis-child(:strength="-10") 
+                            kinesis-element.kinesis-child(:strength="-15") 
                                 span.screenshots-item__bubble.screenshots-item__bubble--yellow Cloudy
                     div.screenshots-item__description
                         img.screenshots-item__img-weather(src="../assets/img/screenshots-icon-1.png")
@@ -27,10 +27,10 @@
                     div.screenshots-item__images
                         img.screenshots-item__img-text(src="../assets/img/screenshots-weather-2.png" v-parallax="0.15")
                         img.screenshots-item__img-phone(src="../assets/img/screenshots-2.png")                         
-                        kinesis-container.kinesis-parent
+                        kinesis-container.kinesis-parent(:duration="2500")
                             kinesis-element.kinesis-child(:strength="-15")                          
                                 span.screenshots-item__bubble.screenshots-item__bubble--blue 9&deg;
-                            kinesis-element.kinesis-child(:strength="45")      
+                            kinesis-element.kinesis-child(:strength="25")      
                                 span.screenshots-item__bubble.screenshots-item__bubble--yellow Sunny
                     div.screenshots-item__description
                         img.screenshots-item__img-weather(src="../assets/img/screenshots-icon-2.png")
@@ -45,7 +45,7 @@
                     div.screenshots-item__images
                         img.screenshots-item__img-text(src="../assets/img/screenshots-weather-3.png" v-parallax="0.15")
                         img.screenshots-item__img-phone(src="../assets/img/screenshots-3.png")                            
-                        kinesis-container.kinesis-parent
+                        kinesis-container.kinesis-parent(:duration="2500")
                             kinesis-element.kinesis-child(:strength="20")                                                 
                                 span.screenshots-item__bubble.screenshots-item__bubble--blue 9&deg;
                             kinesis-element.kinesis-child(:strength="-30")      
